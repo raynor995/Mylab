@@ -21,7 +21,8 @@ int main(){
     }
 
     StackT.show();
-    StackReverse(StackT,Stack0);
+    StackReverse(&StackT,&Stack0);
+    Stack0.show();
     theQueue.push('#');
     viewLeftChars[vlc] = '#';
     vlc = 0;

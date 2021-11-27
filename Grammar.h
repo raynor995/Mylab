@@ -12,13 +12,16 @@
 #include <stack>
 #include "functions.h"
 #include "util.h"
-
+#include <stdlib.h>
+#include <sstream>
 
 //初始化非终结符集和终结符集
 char V[MAXSIZE];
 int V_len = 0;
 char T[MAXSIZE];
 int T_len = 0;
+int resultT = 1; //T1 T2 T3
+
 void init_TV(){
     T[0] = '(';T[1] = ')';T[2] = '+';T[3] = '-';T[4] = '*';T[5] = '/';T[6] = 'i';T[7] = '#';
     T_len = 8;
@@ -124,6 +127,91 @@ void SLR_Driver() {
 
                 }
                 cout<<" 动作: R"<<_goto[state][pos]<<endl;
+                //插入子程序
+                switch (_goto[state][pos]) {
+                    case 1:
+                    {
+                        //+的子程序
+                        string a,b;
+                        a = Stack3.pop();
+                        b = Stack2.pop();
+                        stringstream stream1;
+                        stream1 << "T"<<resultT;
+                        resultT++;
+                        string temp;
+                        stream1>>temp;
+                        Stack3.push(temp);
+                        string str = "(+,"+a+","+b+","+temp+")";
+                        WriteIntoOut2(str);
+                    }break;
+                    case 2:{
+                        //-的子程序
+                        string a,b;
+                        a = Stack3.pop();
+                        b = Stack2.pop();
+                        stringstream stream1;
+                        stream1 << "T"<<resultT;
+                        resultT++;
+                        string temp;
+                        stream1>>temp;
+                        Stack3.push(temp);
+                        string str = "(-,"+a+","+b+","+temp+")";
+                        WriteIntoOut2(str);
+                    }break;
+                    case 3:{
+                        //r3是T规约为E 从2号栈中拿出到3号栈
+                        string temp =Stack2.pop();
+                        Stack3.push(temp);
+                        cout<<"[INFO] 从2号栈拿出1个 "+temp+" 到3号栈"<<endl;
+                    }break;
+                    case 4:{
+                        //r4是乘法 (*,a,b,result)
+                        string a,b;
+                        a = Stack2.pop();
+                        b = Stack1.pop();
+                        stringstream stringstream1;
+                        stringstream1<<"T"<<resultT;
+                        resultT++;
+                        string temp;
+                        stringstream1>>temp;
+                        Stack2.push(temp);
+                        string str = "(*,"+a+","+b+","+temp+")";
+                        WriteIntoOut2(str);
+                    }break;
+                    case 5:{
+                        //r4是乘法 (/,a,b,result)
+                        string a,b;
+                        a = Stack2.pop();
+                        b = Stack1.pop();
+                        stringstream stringstream1;
+                        stringstream1<<"T"<<resultT;
+                        resultT++;
+                        string temp;
+                        stringstream1>>temp;
+                        Stack2.push(temp);
+                        string str = "(/,"+a+","+b+","+temp+")";
+                        WriteIntoOut2(str);
+                    }break;
+                    case 6:{
+                        //F规约为T
+                        Stack2.push(Stack1.pop());
+                        Stack1.show();
+                        Stack2.show();
+                        cout<<"[INFO] 从1到2"<<endl;
+                    }break;
+                    case 7:{
+                        //(E) 到 F 就是 E 到F
+                        Stack1.push(Stack3.pop());
+                        cout<<"[INFO] 从3到1"<<endl;
+                    }break;
+                    case 8:{
+                        //字符规约为F
+                        Stack1.push(Stack0.pop());
+                        Stack0.show();
+                        Stack1.show();
+                        cout<<"[INFO] 从0到1"<<endl;
+                    }break;
+                }
                 s_char.push(products[_goto[state][pos]].left);//左部进栈
                 viewChar.push(products[_goto[state][pos]].left);
 //                cout<<products[_goto[state][pos]].left<<" 进入符号栈"<<endl;

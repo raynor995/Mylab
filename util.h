@@ -41,6 +41,12 @@ public:
 char _action[MAXSIZE][MAXSIZE];
 int _goto[MAXSIZE][MAXSIZE];
 
+void WriteIntoOut2(string str){
+    ofstream outfile;
+    outfile.open("out2.txt", ios::app);
+    outfile<<str<<endl;
+}
+
 //³õÊ¼»¯action±í
 void init_action() {
     for (int i = 0; i < MAXSIZE; ++i) {

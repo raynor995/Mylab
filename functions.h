@@ -72,7 +72,7 @@ public:
         for (int i = 0; i < top; ++i) {
             cout << value[i];
         }
-        cout << endl;
+        cout <<" top: "<<top<<endl;
     }
 
     bool isEmpty() {
@@ -95,16 +95,15 @@ char viewLeftChars[MAXSIZE];
 int vlc = 0;
 int theLine = 1;
 
-void StackReverse(stringStack ST, stringStack S0) {
+void StackReverse(stringStack* ST, stringStack* S0) {
     while (true) {
-        if (ST.isEmpty())
+        if (ST->isEmpty())
         {
             break;
         }
-        S0.push(ST.pop());
+        S0->push(ST->pop());
     }
     cout << "转换成功!" << endl;
-    S0.show();
 }
 
 bool Judge(char *s) {
@@ -263,7 +262,6 @@ void Writing(int type, char *s, bool keep = false) {
             break;
         case 1:
             //保留字
-            StackT.push(str);
             outfile << "(" << str << ", )" << endl;
             break;
         case 7:
@@ -331,12 +329,10 @@ void Writing(int type, char *s, bool keep = false) {
             break;
         case 21:
             // (
-            StackT.push(str);
             outfile << "(" << endl;
             break;
         case 22:
             // )
-            StackT.push(str);
             outfile << ")" << endl;
     }
 
