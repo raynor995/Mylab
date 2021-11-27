@@ -53,10 +53,10 @@ RM = "D:\application\CLion 2021.2.3\bin\cmake\win\bin\cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = D:\Mine\HeBeiUniversity\Compiling\Lab1\Lab1v3
+CMAKE_SOURCE_DIR = D:\Mine\Git\Lab1v3
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = D:\Mine\HeBeiUniversity\Compiling\Lab1\Lab1v3\cmake-build-debug
+CMAKE_BINARY_DIR = D:\Mine\Git\Lab1v3\cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -80,14 +80,14 @@ clean: CMakeFiles/Lab1.dir/clean
 CMakeFiles/Lab1.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Lab1.dir\build.make CMakeFiles/Lab1.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Lab1.dir\build.make CMakeFiles/Lab1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\Mine\HeBeiUniversity\Compiling\Lab1\Lab1v3\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target Lab1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\Mine\Git\Lab1v3\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target Lab1"
 .PHONY : CMakeFiles/Lab1.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Lab1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\Mine\HeBeiUniversity\Compiling\Lab1\Lab1v3\cmake-build-debug\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\Mine\Git\Lab1v3\cmake-build-debug\CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/Lab1.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\Mine\HeBeiUniversity\Compiling\Lab1\Lab1v3\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\Mine\Git\Lab1v3\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/Lab1.dir/rule
 
 # Convenience name for target.
