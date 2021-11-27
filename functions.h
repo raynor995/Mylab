@@ -42,14 +42,25 @@ public:
     string value[MAXSIZE];
     int top=0;
 
-    void push(char c){
-        value[top] = c;
+    void push(string str){
+        value[top] = str;
         top++;
     }
     string pop(){
+        if (top <=0){
+            cout<<"Õ»Îª¿ÕÕ»!"<<endl;
+            return "null";
+        }
         string temp = value[top-1];
         top--;
         return temp;
+    }
+    string getTop(){
+        try {
+            return value[top-1];
+        }catch(exception e){
+            cout<<"¶ÑÕ»Îª¿ÕÒì³£"<<endl;
+        }
     }
     void show(){
         for (int i = 0; i < top; ++i) {
@@ -57,8 +68,15 @@ public:
         }
         cout<<endl;
     }
+    bool isEmpty(){
+        if (top == 0){
+            return true;
+        } else
+            return false;
+    }
 };
 
+stringStack StackT,Stack0,Stack1,Stack2,Stack3;
 
 //ÉèÖÃÆì×Ó
 int reRollFlag[MAXSIZE];
@@ -198,6 +216,7 @@ void Writing(int type, char* s, bool keep= false){
             theQueue.push('i');
             viewLeftChars[vlc] = 'i';
             vlc++;
+            StackT.push(str);
             outfile<<"(INT, "<<result<<"  " <<str<<")"<<endl;
         }
 
@@ -209,6 +228,7 @@ void Writing(int type, char* s, bool keep= false){
             theQueue.push('i');
             viewLeftChars[vlc] = 'i';
             vlc++;
+            StackT.push(str);
             outfile<<"(REAL,"<<f<<")"<<endl;
         }
             break;
@@ -217,10 +237,12 @@ void Writing(int type, char* s, bool keep= false){
             theQueue.push('i');
             viewLeftChars[vlc] = 'i';
             vlc++;
+            StackT.push(str);
             outfile<<"(REAL,"<<str<<")"<<endl;
             break;
         case 1:
             //±£Áô×Ö
+            StackT.push(str);
             outfile<<"("<<str<<", )"<<endl;
             break;
         case 7:
@@ -228,38 +250,47 @@ void Writing(int type, char* s, bool keep= false){
             theQueue.push('i');
             viewLeftChars[vlc] = 'i';
             vlc++;
+            StackT.push(str);
             outfile<<"(ID,\'"<<str<<"\')"<<endl;
             break;
         case 10:
             //'<'
+            StackT.push(str);
             outfile<<"(LT,  )"<<endl;
             break;
         case 11:
             //'<='
+            StackT.push(str);
             outfile<<"(LE,  )"<<endl;
             break;
         case 12:
             //'='
+            StackT.push(str);
             outfile<<"(EQ,  )"<<endl;
             break;
         case 13:
             //'<>'
+            StackT.push(str);
             outfile<<"(NE,  )"<<endl;
             break;
         case 14:
             //'>'
+            StackT.push(str);
             outfile<<"(GT,  )"<<endl;
             break;
         case 15:
             //'>='
+            StackT.push(str);
             outfile<<"(GE,  )"<<endl;
             break;
         case 16:
             //':='
+            StackT.push(str);
             outfile<<"(IS,  )"<<endl;
             break;
         case 17:
             //'+'
+            StackT.push(str);
             theQueue.push('+');
             viewLeftChars[vlc] = '+';
             vlc++;
@@ -267,6 +298,7 @@ void Writing(int type, char* s, bool keep= false){
             break;
         case 18:
             //'-'
+            StackT.push(str);
             theQueue.push('-');
             viewLeftChars[vlc] = '-';
             vlc++;
@@ -274,6 +306,7 @@ void Writing(int type, char* s, bool keep= false){
             break;
         case 19:
             //'*'
+            StackT.push(str);
             theQueue.push('*');
             viewLeftChars[vlc] = '*';
             vlc++;
@@ -281,6 +314,7 @@ void Writing(int type, char* s, bool keep= false){
             break;
         case 20:
             //'/'
+            StackT.push(str);
             theQueue.push('/');
             viewLeftChars[vlc] = '/';
             vlc++;
@@ -288,10 +322,12 @@ void Writing(int type, char* s, bool keep= false){
             break;
         case 21:
             // (
+            StackT.push(str);
             outfile<<"("<<endl;
             break;
         case 22:
             // )
+            StackT.push(str);
             outfile<<")"<<endl;
     }
 

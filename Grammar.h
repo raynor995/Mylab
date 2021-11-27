@@ -11,7 +11,7 @@
 #include <vector>
 #include <stack>
 #include "functions.h"
-
+#include "util.h"
 
 
 //初始化非终结符集和终结符集

@@ -36,25 +36,7 @@ public:
         return value[top-1];
     }
 };
-class charStack{
-public:
-    char value[MAXSIZE];
-    int top=0;
-    void show(){
-        cout<<"·ûºÅÕ»: ";
-        for (int i = 0; i < top; ++i) {
-            cout<<value[i];
-        }
-        cout<<" ";
-    }
-    void push(char c){
-        value[top] = c;
-        top++;
-    }
-    void pop(){
-        top--;
-    }
-};
+
 //action¡¢goto ·ÖÎö±í
 char _action[MAXSIZE][MAXSIZE];
 int _goto[MAXSIZE][MAXSIZE];

@@ -19,6 +19,8 @@ int main(){
         s[0] = '\0';
         excute(&n,0,s);
     }
+
+    StackT.show();
     theQueue.push('#');
     viewLeftChars[vlc] = '#';
     vlc = 0;
