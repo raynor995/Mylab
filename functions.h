@@ -151,13 +151,6 @@ char Mygetchar(int *n) {
                 cout << "更新行: " << theLine << endl;
             }
         }
-        if (c == '\n') {
-            //如果识别了换行符
-            *n = *n + 1;
-            Mygetchar(n);
-        }
-//        cout<<"[DEBUG] 读取n值: "<<*n<<endl;
-//        cout<<"[DEBUG] 读取字符c: |"<<c<<"|"<<endl;
         cout << "n: " << *n << endl;
         *n = *n + 1;
         if (c == 32) {
@@ -344,11 +337,11 @@ int excute(int *n, int state, char *s) {
     int x = 0;
     int t = *n - 1;
     char c = Mygetchar(n);
-    if (c == '$') {
+    if (c == '$' || c == '\n') {
         c = Mygetchar(n);
     }
 
-    cout << "[INFO] 读取字符c: |" << c << "|" << "  ASCII: " << int(c) << endl;
+    cout << "[INFO] 读取字符c: |" << c << "|" << " n: " << *n << endl;
 
     //**********字符串拼接开始
     char *news = (char *) malloc(sizeof(char) * (t + 1 + 1));

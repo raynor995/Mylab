@@ -11,6 +11,12 @@ int main(){
     //得到状态和字母 然后通过矩阵进行相关的操作 进入下一个状态
     int n=0;
     int switch_note = 0;
+    ofstream file1;
+    file1.open("out.txt",ios::out);
+    file1<<"//This is the file of 2 arguments expression"<<endl;
+    file1.close();
+    file1.open("out2.txt",ios::out);
+    file1<<"//This is the file of 4 arguments expression"<<endl;
     while (true){
         if (Mygetchar(&n) == '#')
             break;
